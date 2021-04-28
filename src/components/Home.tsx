@@ -25,7 +25,7 @@ export default () => (
         <Link to="/body">Body</Link>
       </li>
       <li>
-        <a href="polygons.html">Polygons</a>
+        <Link to="/polygons">Polygons</Link>
       </li>
     </ul>
   </div>
