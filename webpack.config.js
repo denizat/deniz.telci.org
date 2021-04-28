@@ -9,6 +9,9 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
   },
@@ -26,6 +29,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|svg|gif|jp2|webp)$/,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+        },
       },
     ],
   },
