@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import me from "../../media/pic.svg";
+import me from "../../media/pic.png";
 
 export default () => (
   <div>
