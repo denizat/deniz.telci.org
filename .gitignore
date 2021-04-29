@@ -1,5 +1,4 @@
-build/*
-!build/*.html
+build
 
 # Logs
 logs
