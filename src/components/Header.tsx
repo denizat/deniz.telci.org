@@ -5,7 +5,11 @@ type HeaderProps = {
   num: number;
 };
 
-export class Header extends React.Component<HeaderProps> {
+// /**
+//  * @augments {Component<Props, State>}
+//  */
+
+export default class Header extends React.Component<HeaderProps> {
   render() {
     return (
       <header>

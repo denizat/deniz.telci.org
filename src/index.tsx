@@ -5,9 +5,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Body from "./components/Body";
 import Home from "./components/Home";
 import Polygons from "./components/polygons/index";
+import Header from "./components/Header";
 
-const Header = () => (
+const NavHeader = () => (
   <nav>
+    <Header title="Real_Header" num={420} />
     <Link to="/">Home</Link>
     <br />
     <Link to="/body">Body</Link>
@@ -22,7 +24,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Header />
+        <NavHeader />
         <Switch>
           <Route path="/polygons">
             <Polygons />
