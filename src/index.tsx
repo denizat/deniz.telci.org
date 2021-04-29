@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+} from "react-router-dom";
 
 import Body from "./components/Body";
 import Home from "./components/Home";
@@ -16,9 +22,31 @@ const NavHeader = () => (
     <br />
     <Link to="/polygons">Polygons</Link>
     <br />
+    <Link to="/practical_react_with_ben_awad">
+      Practical React with Ben Awad
+    </Link>
+    <br />
+
     <hr />
   </nav>
 );
+
+const PracticalReact = () => {
+  let match = useRouteMatch();
+  let base = match.url;
+  return (
+    <div>
+      <nav>
+        <Link to={match.url + "/state"}>State</Link>
+      </nav>
+      <Switch>
+        <Route path={base + "/state"}>
+          <p>INSTATE</p>
+        </Route>
+      </Switch>
+    </div>
+  );
+};
 
 class App extends React.Component {
   render() {
@@ -26,6 +54,9 @@ class App extends React.Component {
       <Router>
         <NavHeader />
         <Switch>
+          <Route path="/practical_react_with_ben_awad">
+            <PracticalReact />
+          </Route>
           <Route path="/polygons">
             <Polygons />
           </Route>
