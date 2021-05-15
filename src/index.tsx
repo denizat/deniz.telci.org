@@ -16,7 +16,7 @@ const Loc = () => (
 class App extends React.Component {
   render() {
     return (
-      <div className="flex flex-col h-screen overflow-hidden bg-gray-900   text-blue-700"> 
+      <div className="flex flex-col h-screen overflow-hidden bg-gray-900   text-blue-700 font-cm"> 
       <Router >
         <Loc />
 
