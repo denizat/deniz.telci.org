@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import me from "../../media/pic.png";
 import "tailwindcss/tailwind.css"
+import "./image.css"
 
 export default () => (
-  <div className="bg-gray-800 text-purple-300">
+  <div className="bg-gray-800">
     <h1>Deniz Telci</h1>
     <figure>
-      <img src={me} title="Made by some gimp error, I think." />
+      <img  className="image" src={me} title="Made by some gimp error, I think." />
       <figcaption>"Very handsome" - My Mom</figcaption>
     </figure>
 
