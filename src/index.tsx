@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "tailwindcss/tailwind.css"
 
 import Body from "./components/Body";
 import Home from "./components/Home";
@@ -11,7 +12,8 @@ import PracticalReact from "./components/practicalReact/PracticalReact";
 class App extends React.Component {
   render() {
     return (
-      <Router>
+      <div className="flex flex-col h-full overflow-hidden">
+      <Router >
         <NavHeader />
         <Switch>
           <Route path="/practical_react_with_ben_awad">
@@ -28,6 +30,7 @@ class App extends React.Component {
           </Route>
         </Switch>
       </Router>
+</div>
     );
   }
 }
