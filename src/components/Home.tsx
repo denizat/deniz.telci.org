@@ -5,12 +5,13 @@ import "tailwindcss/tailwind.css"
 import "./image.css"
 
 export default () => (
-  <div className="bg-gray-800">
+  <div className="bg-gradient-to-bl via-transparent from-red-200 p-4   text-4xl">
     <h1>Deniz Telci</h1>
     <figure>
       <img  className="image" src={me} title="Made by some gimp error, I think." />
       <figcaption>"Very handsome" - My Mom</figcaption>
     </figure>
+
 
     <h2>Contact</h2>
     <ul>
