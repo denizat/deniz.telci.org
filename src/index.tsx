@@ -7,23 +7,22 @@ import Body from "./components/Body";
 import Home from "./components/Home";
 import Polygons from "./components/polygons/index";
 import NavHeader from "./components/NavHeader";
-import PracticalReact from "./components/practicalReact/PracticalReact";
 
 const Loc = () => (
-<div>{(useLocation().pathname==="/")? <NavHeader />: <></>}</div>
+<div><NavHeader /></div>
 )
+
 
 class App extends React.Component {
   render() {
     return (
-      <div className="flex flex-col h-screen overflow-hidden bg-gray-900   text-blue-700 font-cm"> 
+      <div  className="bg-still-water  flex flex-col h-screen overflow-hidden   text-black font-cm"> 
+      <div className="backdrop-filter backdrop-grayscale  backdrop-blur-md backdrop-contrast-200">
+      <div className="text-6xl  p-10">Deniz Telci</div>
+
       <Router >
         <Loc />
-
         <Switch>
-          <Route path="/practical_react_with_ben_awad">
-            <PracticalReact />
-          </Route>
           <Route path="/polygons">
             <Polygons />
           </Route>
@@ -35,6 +34,7 @@ class App extends React.Component {
           </Route>
         </Switch>
       </Router>
+      </div>
 </div>
     );
   }

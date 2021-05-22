@@ -1,11 +1,15 @@
 module.exports = {
-  purge: [],
+  purge: ["./src/**/*.tsx", "./src/**/*.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
       cm: ["Computer Modern Serif", "serif"],
     },
-    extend: {},
+    extend: {
+      backgroundImage: (theme) => ({
+        "still-water": "url('/media/still-water.jpg')",
+      }),
+    },
   },
   variants: {
     extend: {},
