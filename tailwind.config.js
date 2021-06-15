@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       cm: ["Computer Modern Serif", "serif"],
+      rob: ["Roboto", "sans-serif"],
     },
     extend: {
       backgroundImage: (theme) => ({
