@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="bg-still-water  flex flex-col h-screen overflow-hidden   text-black font-cm">
-        <div className="backdrop-filter backdrop-grayscale  backdrop-blur-md backdrop-contrast-200">
+        <div className="backdrop-filter h-screen  backdrop-blur-md ">
           <div className="text-6xl  p-10">Deniz Telci</div>
 
           <Router >
