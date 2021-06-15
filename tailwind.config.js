@@ -3,7 +3,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      cm: ["Computer Modern Serif", "serif"],
+      // cm: ["Computer Modern Serif", "serif"],
+      cm: ["serif"],
       rob: ["Roboto", "sans-serif"],
     },
     extend: {
