@@ -4,7 +4,7 @@
 
 ```
 location / {
-try_files $uri /index.html;
+    try_files $uri /index.html;
 }
 
 ```

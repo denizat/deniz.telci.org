@@ -7,7 +7,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: (theme) => ({
-        "still-water": "url('/media/still-water.jpg')",
+        "still-water": "url('/src/images/still-water.jpg')",
       }),
     },
   },
