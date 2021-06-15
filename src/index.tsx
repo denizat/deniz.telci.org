@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "tailwindcss/tailwind.css"
-
-import { Link } from "react-router-dom";
 import "./image.css"
 import "./fonts/cms/cmun-serif.css"
+
+import Fun from "./pages/Fun"
 
 class App extends React.Component {
   render() {
@@ -16,20 +16,13 @@ class App extends React.Component {
 
           <Router >
             <Switch>
-              <Route path="/art">
-              </Route>
-              <Route path="/fun">
-              </Route>
-              <Route path="/">
-
+              <Route exact path="/">
                 <div className="items-center text-4xl ">
                   <h1>Deniz Telci</h1>
                   <figure className="items-center">
                     {/* <img  className="image self-center" src={transme} title="Made by some gimp error, I think." /> */}
                     <figcaption>"Very handsome" - My Mom</figcaption>
                   </figure>
-
-
                   <h2>Contact</h2>
                   <ul>
                     <li>
@@ -42,13 +35,15 @@ class App extends React.Component {
                   <h2>Fun Stuff</h2>
                   <ul>
                     <li>
-                      <Link to="/body">Body</Link>
-                    </li>
-                    <li>
-                      <Link to="/polygons">Polygons</Link>
+                      <Link to="/fun">Fun</Link>
                     </li>
                   </ul>
                 </div>
+              </Route>
+              <Route path="/art">
+              </Route>
+              <Route path="/fun">
+                <Fun />
               </Route>
             </Switch>
           </Router>
