@@ -42,6 +42,11 @@ module.exports = {
       },
     ],
   },
+  // This is here because when you reload with react router the url changes (duh) and 
+  // so the default relative path results in the site breaking when you go two pages in
+  output: {
+    publicPath: "/"
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
