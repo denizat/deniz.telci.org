@@ -2,6 +2,8 @@ import React from "react"
 import { Link, Route, Switch, useParams, useRouteMatch } from "react-router-dom"
 import "tailwindcss/tailwind.css"
 
+import Polygon from "./fun/pages/Polygon"
+
 type funParams = {
     funThing: string
 }
@@ -13,7 +15,7 @@ interface obj {
 
 const things: obj = {
     polygons: () => (
-        <div>We are in polygons</div>
+        <Polygon />
     ),
     sort: () => (
         <div>We are in SORT</div>
@@ -56,7 +58,7 @@ export default () => {
                     {
                         Object.keys(things).map((aKey, i) => {
                             return (
-                                <li><Link to={`${url}/${aKey}`}>{capFirst(aKey)}</Link></li>
+                                <li key={i}><Link to={`${url}/${aKey}`}>{capFirst(aKey)}</Link></li>
                             )
                         })
                     }
