@@ -6,15 +6,33 @@ type funParams = {
     funThing: string
 }
 
+
+interface obj {
+    [String: string]: () => JSX.Element
+}
+
+const things: obj = {
+    polygons: () => (
+        <div>We are in polygons</div>
+    ),
+    sort: () => (
+        <div>We are in SORT</div>
+    )
+}
+
 const Data = () => {
     let { funThing } = useParams<funParams>()
     let { path, url } = useRouteMatch()
     return (
         <div>
-            <div>This is the fun thing: {funThing}</div>
+            <div>This is the fun thing: {things[funThing]()}</div>
             <div>Also here is the path: {path}</div>
         </div>
     )
+}
+
+const capFirst = (word: string): string => {
+    return (word[0].toUpperCase() + word.slice(1))
 }
 
 
@@ -35,8 +53,13 @@ export default () => {
             <div className="container m-2">
                 <h1>Here is some fun stuff:</h1>
                 <ul className="list-disc mx-5">
-                    <li><Link to={`${url}/polygons`}>Polygons</Link></li>
-                    <li><Link to={`${url}/sort`}>Sort</Link></li>
+                    {
+                        Object.keys(things).map((aKey, i) => {
+                            return (
+                                <li><Link to={`${url}/${aKey}`}>{capFirst(aKey)}</Link></li>
+                            )
+                        })
+                    }
                 </ul>
             </div>
 
