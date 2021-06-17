@@ -10,7 +10,7 @@ import Fun from "./pages/Fun"
 class App extends React.Component {
   render() {
     return (
-      <div className="bg-still-water  flex flex-col h-screen overflow-hidden   text-black font-cm ">
+      <div className="bg-still-water bg-cover  flex flex-col  overflow-auto   text-black font-cm ">
         <div className="backdrop-filter h-screen  backdrop-blur-md mx-4">
           <div className="text-6xl  p-10">Deniz Telci</div>
 
