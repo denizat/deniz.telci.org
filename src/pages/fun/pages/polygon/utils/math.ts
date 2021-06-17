@@ -9,6 +9,7 @@ export default class PolygonMath {
     canvas: any
     ctx: any
     center: Point
+    min: number
     constructor(canvasRef: React.MutableRefObject<any>) {
         this.canvas = canvasRef.current
         this.ctx = this.canvas.getContext('2d')
@@ -18,6 +19,14 @@ export default class PolygonMath {
             x: this.canvas.width / 2,
             y: this.canvas.height / 2,
         };
+
+        if (this.center.x > this.center.y) {
+            this.min = this.center.y
+        } else {
+            this.min = this.center.x
+        }
+        // Because tailwindcss uses vw and we need to scale it
+        this.min *= 1
 
 
 

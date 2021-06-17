@@ -17,17 +17,22 @@ export default () => {
         ///////////////////////////////////// https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
         const p = new PolygonMath(canvasRef)
 
-        p.drawChaosFrac(p.polygon(5, p.center.x, p.center.x, p.center.y), 100000)
+        p.drawChaosFrac(p.polygon(5, p.min, p.center.x, p.center.y), 100000)
+
+        console.log(p.min)
     })
 
 
+    const min = screen.width > screen.height ? screen.height : screen.width
 
     return (
         <canvas
             ref={canvasRef}
-            width="1000"
-            height="1000"
-            className="canvas"
+            width={min}
+            height={min}
+        // width="1000"
+        // height="1000"
+        // className="canvas w-96 h-96"
         ></canvas>
     )
 }
