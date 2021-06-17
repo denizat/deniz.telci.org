@@ -5,12 +5,10 @@ import "./canvas.css"
 import PolygonMath from "./polygon/utils/math"
 
 
-
-// export default () => (
-//     <div>Hello im here</div>
-// )
-
-
+/**
+ * Plans:
+ * Start off with a random fractal generating on component load so that we grab the users attention
+ */
 
 export default () => {
 
