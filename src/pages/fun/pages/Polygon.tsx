@@ -16,7 +16,7 @@ export default () => {
     const canvasRef = React.createRef<HTMLCanvasElement>()
     // const canvasRef = useRef(null)
     let min = screen.width > screen.height ? screen.height : screen.width
-    min *= 0.8
+    min *= 1.5
 
     return (
         <div className=" p-10 w-max  backdrop-filter backdrop-blur-xl ">

@@ -12,7 +12,11 @@ export default (prop: BoxProp) => {
     useEffect(() => {
         ///////////////////////////////////// https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
         const p = new PolygonMath(prop.canvasRef)
-        p.drawChaosFrac(p.polygon(Math.floor(Math.random() * 3) + 3, p.min, p.center.x, p.center.y), 100000)
+        // p.drawChaosFrac(p.polygon(Math.random() * 3 + 3, p.min, p.center.x, p.center.y), 100000)
+        let pg = p.polygon(Math.sqrt(25), p.min, p.center.x, p.center.y)
+        pg[4] = { x: pg[4].x + 500, y: pg[4].y + 100 }
+        p.drawChaosFrac(pg, 100000)
+        // p.drawChaosFrac(p.polygon(Math.floor(Math.random() * 3) + 3, p.min, p.center.x, p.center.y), 100000)
 
     })
     return (
