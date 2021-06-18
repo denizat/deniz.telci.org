@@ -6,6 +6,7 @@ import "./image.css"
 import "./fonts/cms/cmun-serif.css"
 
 import Fun from "./pages/Fun"
+import Art from "./pages/Art"
 
 class App extends React.Component {
   render() {
@@ -45,6 +46,7 @@ class App extends React.Component {
               </div>
             </Route>
             <Route path="/art">
+              <Art />
             </Route>
             <Route path="/fun">
               <Fun />
