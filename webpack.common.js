@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -7,6 +8,12 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "public", "index.html"),
+    }),
+    new MiniCssExtractPlugin()
+  ],
   module: {
     rules: [
       {
@@ -21,7 +28,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          { loader: "style-loader" },
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -47,9 +54,4 @@ module.exports = {
   output: {
     publicPath: "/"
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "public", "index.html"),
-    }),
-  ],
 };

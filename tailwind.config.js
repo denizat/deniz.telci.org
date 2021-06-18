@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ["./src/**/*.tsx", "./src/**/*.html"],
+  purge: ["./src/**/*.tsx", "./public/**/*.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
