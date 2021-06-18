@@ -17,7 +17,7 @@ export default () => {
         ///////////////////////////////////// https://medium.com/@pdx.lucasm/canvas-with-react-js-32e133c05258
         const p = new PolygonMath(canvasRef)
 
-        p.drawChaosFrac(p.polygon(5, p.min, p.center.x, p.center.y), 100000)
+        p.drawChaosFrac(p.polygon(3, p.min, p.center.x, p.center.y), 100000)
 
         console.log(p.min)
     })
@@ -26,15 +26,14 @@ export default () => {
     const min = screen.width > screen.height ? screen.height : screen.width
 
     return (
-        // I cant give this thing a backdround for some reason.
-        <div className=" p-10 m-10  bg-red-400">
+        <div className=" p-10 w-max  backdrop-filter backdrop-blur-xl ">
             <canvas
                 ref={canvasRef}
                 width={min}
                 height={min}
                 // width="1000"
                 // height="1000"
-                className="canvas  bg-red-400"
+                className="canvas bg-black"
             ></canvas>
         </div>
     )
