@@ -1,11 +1,10 @@
 module.exports = {
   purge: ["./src/**/*.tsx", "./public/**/*.html"],
   darkMode: false, // or 'media' or 'class'
+  mode: "jit",
   theme: {
     fontFamily: {
-      // cm: ["Computer Modern Serif", "serif"],
-      cm: ["serif"],
-      rob: ["Roboto", "sans-serif"],
+      cm: ["Computer Modern Serif", "serif"],
     },
     extend: {
       backgroundImage: (theme) => ({

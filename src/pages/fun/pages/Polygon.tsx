@@ -26,13 +26,16 @@ export default () => {
     const min = screen.width > screen.height ? screen.height : screen.width
 
     return (
-        <canvas
-            ref={canvasRef}
-            width={min}
-            height={min}
-        // width="1000"
-        // height="1000"
-        // className="canvas w-96 h-96"
-        ></canvas>
+        // I cant give this thing a backdround for some reason.
+        <div className=" p-10 m-10  bg-red-400">
+            <canvas
+                ref={canvasRef}
+                width={min}
+                height={min}
+                // width="1000"
+                // height="1000"
+                className="canvas  bg-red-400"
+            ></canvas>
+        </div>
     )
 }
