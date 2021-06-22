@@ -9,6 +9,6 @@ module.exports = merge(common, {
   devServer: {
     historyApiFallback: true,
   },
-  devtool: "eval",
+  devtool: "source-map",
   mode: "development",
 });
