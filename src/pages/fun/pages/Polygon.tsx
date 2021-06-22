@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import "tailwindcss/tailwind.css"
-import "./canvas.css"
+import "./polygon/canvas.css"
 
 import PolygonMath from "./polygon/utils/math"
 import ControlBox from "./polygon/ControlBox"
