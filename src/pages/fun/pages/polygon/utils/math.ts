@@ -6,8 +6,8 @@ type Point = {
 type Polygon = Point[];
 
 export default class PolygonMath {
-    canvas: any
-    ctx: any
+    canvas: HTMLCanvasElement
+    ctx: CanvasRenderingContext2D
     center: Point
     min: number
     constructor(canvasRef: React.MutableRefObject<any>) {
@@ -30,6 +30,10 @@ export default class PolygonMath {
 
 
 
+    }
+
+    clear() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     }
 
     /**
