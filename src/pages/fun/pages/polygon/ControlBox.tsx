@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { render } from "react-dom";
+import React from "react";
 import "tailwindcss/tailwind.css"
 import PolygonMath, { Techniques } from "./utils/math";
 
@@ -30,6 +29,7 @@ const Techniques: React.FC<{ math: PolygonMath, handler: Function }> = ({ math, 
 export default class ControlBox extends React.Component<BoxProp, BoxState> {
     technique: Function
     p: PolygonMath
+    sides: number
     constructor(props: BoxProp) {
         super(props)
         this.state = {
@@ -37,6 +37,7 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
         }
         this.p = new PolygonMath(props.canvasRef)
         this.technique = this.p.techniques.random
+        this.sides = 3 // Default to Serpinski triangle
     }
 
 
@@ -49,8 +50,8 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
             this.setState({
                 drawing: setInterval(() => {
                     let p = this.p
-                    p.drawChaosFrac(p.polygon(3, p.min, p.center.x, p.center.y), 5000, this.technique, null)
-                }, 300)
+                    p.drawChaosFrac(p.polygon(this.sides, p.min, p.center.x, p.center.y), 1000, this.technique, null)
+                }, 100)
             })
 
         }
@@ -68,6 +69,11 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
             <div className="bg-purple-500">
                 <button className="bg-green-700 border-4 border-red-500" onClick={this.handleClick}>{this.state.drawing ? "Pause" : "Start"}</button>
                 <button className="bg-green-700" onClick={this.clear}>Clear</button>
+                <input className="mx-3" type="range" defaultValue={3} min={1} max={10} onChange={(e) => {
+                    this.sides = parseInt(e.target.value)
+                    this.clear()
+
+                }} />
                 <Techniques math={this.p} handler={this.handleTech.bind(this)} />
             </div>
         )
