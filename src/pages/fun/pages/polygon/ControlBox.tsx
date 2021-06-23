@@ -12,22 +12,21 @@ interface BoxState {
 }
 
 
-const Techniques: React.FC<{ math: PolygonMath }> = ({ math }) => {
-    console.log(math.techniques);
-
+const Techniques: React.FC<{ math: PolygonMath, handler: any }> = ({ math, handler }) => {
     return (
         <ul className="mx-7 list-decimal">
             {
                 Object.keys(math.techniques).map((v, i) => {
-                    return (<div key={i}>{v}</div>)
+                    return (<li key={i} onClick={() => handler(v)}>{v}</li>)
                 })
             }
-        </ul>
+        </ul >
     )
 }
 
 
 export default class ControlBox extends React.Component<BoxProp, BoxState> {
+    technique: any
     constructor(props: BoxProp) {
         super(props)
         this.state = {
@@ -52,8 +51,14 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
 
         }
     }
+    handleTech(t: any) {
+        this.technique = t
+
+    }
     clear = () => {
         this.state.p.clear()
+        console.log(this.technique);
+
     }
 
     render() {
@@ -62,7 +67,7 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
                 A box with text
                 <button className="bg-green-700 border-4 border-red-500" onClick={this.handleClick}>{this.state.drawing ? "Pause" : "Start"}</button>
                 <button className="bg-green-700" onClick={this.clear}>Clear</button>
-                <Techniques math={this.state.p} />
+                <Techniques math={this.state.p} handler={this.handleTech.bind(this)} />
             </div>
         )
     }
