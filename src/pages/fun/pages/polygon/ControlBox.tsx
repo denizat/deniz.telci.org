@@ -12,20 +12,30 @@ interface BoxState {
 }
 
 
+const Techniques: React.FC<{ math: PolygonMath }> = ({ math }) => {
+    console.log(math.techniques);
+
+    return (
+        <ul className="mx-7 list-decimal">
+            {
+                Object.keys(math.techniques).map((v, i) => {
+                    return (<div key={i}>{v}</div>)
+                })
+            }
+        </ul>
+    )
+}
+
+
 export default class ControlBox extends React.Component<BoxProp, BoxState> {
     constructor(props: BoxProp) {
         super(props)
         this.state = {
-            p: undefined,
+            p: new PolygonMath(this.props.canvasRef),
             drawing: undefined
         }
     }
-    componentDidMount() {
-        this.setState({
-            p: new PolygonMath(this.props.canvasRef),
-        })
 
-    }
 
     handleClick = () => {
         if (this.state.drawing) {
@@ -36,7 +46,7 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
             this.setState({
                 drawing: setInterval(() => {
                     let p = this.state.p
-                    p.drawChaosFrac(p.polygon(3, p.min, p.center.x, p.center.y), 1000)
+                    p.drawChaosFrac(p.polygon(3, p.min, p.center.x, p.center.y), 1000, null, null)
                 }, 300)
             })
 
@@ -46,15 +56,16 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
         this.state.p.clear()
     }
 
-
-
     render() {
         return (
             <div className="bg-purple-500">
                 A box with text
                 <button className="bg-green-700 border-4 border-red-500" onClick={this.handleClick}>{this.state.drawing ? "Pause" : "Start"}</button>
                 <button className="bg-green-700" onClick={this.clear}>Clear</button>
+                <Techniques math={this.state.p} />
             </div>
         )
     }
+
+
 }

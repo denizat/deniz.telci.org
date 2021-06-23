@@ -114,61 +114,69 @@ export default class PolygonMath {
         return out;
     };
 
-    /**
-     * Selects a random vertex that is not the same as the previously chosen vertex.
-     * @param prevRand Previous randomly chosen number
-     * @param vertices Total number of vertices to choose from
-     * @returns Restricted random number
-     */
-    notSame = (prevRand: number, vertices: number) => {
-        var rand = Math.floor(Math.random() * vertices);
-        while (prevRand === rand) {
-            rand = Math.floor(Math.random() * vertices);
-        }
-        return rand;
-    };
+    techniques = {
 
-    /**
-     * Selects a random vertex that is not one place away clockwise.
-     * @param prevRand Previous randomly chosen number
-     * @param vertices Total number of vertices to choose from
-     * @returns Restricted random number
-     */
-    notRight = (prevRand: number, vertices: number) => {
-        while (true) {
+        /**
+         * Selects a random vertex that is not the same as the previously chosen vertex.
+         * @param prevRand Previous randomly chosen number
+         * @param vertices Total number of vertices to choose from
+         * @returns Restricted random number
+         */
+        notSame: (prevRand: number, vertices: number) => {
             var rand = Math.floor(Math.random() * vertices);
-            if (prevRand == vertices - 1) {
-                if (rand != 0) {
-                    return rand;
+            while (prevRand === rand) {
+                rand = Math.floor(Math.random() * vertices);
+            }
+            return rand;
+        },
+        /**
+         * Selects a random vertex that is not one place away clockwise.
+         * @param prevRand Previous randomly chosen number
+         * @param vertices Total number of vertices to choose from
+         * @returns Restricted random number
+         */
+        notRight: (prevRand: number, vertices: number) => {
+            while (true) {
+                var rand = Math.floor(Math.random() * vertices);
+                if (prevRand == vertices - 1) {
+                    if (rand != 0) {
+                        return rand;
+                    }
+                } else {
+                    if (rand != prevRand + 1) {
+                        return rand;
+                    }
                 }
-            } else {
-                if (rand != prevRand + 1) {
-                    return rand;
+            }
+        },
+
+        /**
+         * Selects a random vertex that is not one place away counterclockwise.
+         * @param prevRand Previous randomly chosen number
+         * @param vertices Total number of vertices to choose from
+         * @returns Restricted random number
+         */
+        notLeft: (prevRand: number, vertices: number) => {
+            while (true) {
+                var rand = Math.floor(Math.random() * vertices);
+                if (prevRand == 0) {
+                    if (rand != vertices - 1) {
+                        return rand;
+                    }
+                } else {
+                    if (rand != prevRand - 1) {
+                        return rand;
+                    }
                 }
             }
         }
-    };
 
-    /**
-     * Selects a random vertex that is not one place away counterclockwise.
-     * @param prevRand Previous randomly chosen number
-     * @param vertices Total number of vertices to choose from
-     * @returns Restricted random number
-     */
-    notLeft = (prevRand: number, vertices: number) => {
-        while (true) {
-            var rand = Math.floor(Math.random() * vertices);
-            if (prevRand == 0) {
-                if (rand != vertices - 1) {
-                    return rand;
-                }
-            } else {
-                if (rand != prevRand - 1) {
-                    return rand;
-                }
-            }
-        }
-    };
+
+    }
+
+    rValues = {
+        serp: 2
+    }
 
     /**
      * Draws a fractal using the chaos game method on the canvas element.
@@ -180,11 +188,17 @@ export default class PolygonMath {
     drawChaosFrac = (
         points: Polygon,
         iterations: number,
-        technique: Function = () => {
-            return Math.floor(Math.random() * points.length);
-        },
-        r: number = (points.length + 3) / points.length
+        technique: Function | null,
+        r: number | null
     ): void => {
+        if (technique === null) {
+            technique = () => {
+                return Math.floor(Math.random() * points.length);
+            }
+        }
+        if (r === null) {
+            r = (points.length + 3) / points.length
+        }
         r = 1 / r;
         let prevPoint: Point = points[0];
         let randomNum = 0;
