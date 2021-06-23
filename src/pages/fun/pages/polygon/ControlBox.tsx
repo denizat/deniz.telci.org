@@ -7,7 +7,6 @@ interface BoxProp {
     canvasRef: React.RefObject<HTMLCanvasElement>
 }
 interface BoxState {
-    p: PolygonMath
     drawing: ReturnType<typeof setTimeout>;
 }
 
@@ -30,13 +29,14 @@ const Techniques: React.FC<{ math: PolygonMath, handler: Function }> = ({ math, 
 
 export default class ControlBox extends React.Component<BoxProp, BoxState> {
     technique: Function
+    p: PolygonMath
     constructor(props: BoxProp) {
         super(props)
         this.state = {
-            p: new PolygonMath(this.props.canvasRef),
             drawing: undefined
         }
-        this.technique = this.state.p.techniques.random
+        this.p = new PolygonMath(props.canvasRef)
+        this.technique = this.p.techniques.random
     }
 
 
@@ -48,7 +48,7 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
 
             this.setState({
                 drawing: setInterval(() => {
-                    let p = this.state.p
+                    let p = this.p
                     p.drawChaosFrac(p.polygon(3, p.min, p.center.x, p.center.y), 5000, this.technique, null)
                 }, 300)
             })
@@ -60,7 +60,7 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
 
     }
     clear = () => {
-        this.state.p.clear()
+        this.p.clear()
     }
 
     render() {
@@ -68,7 +68,7 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
             <div className="bg-purple-500">
                 <button className="bg-green-700 border-4 border-red-500" onClick={this.handleClick}>{this.state.drawing ? "Pause" : "Start"}</button>
                 <button className="bg-green-700" onClick={this.clear}>Clear</button>
-                <Techniques math={this.state.p} handler={this.handleTech.bind(this)} />
+                <Techniques math={this.p} handler={this.handleTech.bind(this)} />
             </div>
         )
     }
