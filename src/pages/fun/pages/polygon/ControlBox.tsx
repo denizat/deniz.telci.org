@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { render } from "react-dom";
 import "tailwindcss/tailwind.css"
-import PolygonMath from "./utils/math";
+import PolygonMath, { Techniques } from "./utils/math";
 
 interface BoxProp {
     canvasRef: React.RefObject<HTMLCanvasElement>
@@ -12,27 +12,31 @@ interface BoxState {
 }
 
 
-const Techniques: React.FC<{ math: PolygonMath, handler: any }> = ({ math, handler }) => {
+const Techniques: React.FC<{ math: PolygonMath, handler: Function }> = ({ math, handler }) => {
     return (
-        <ul className="mx-7 list-decimal">
-            {
-                Object.keys(math.techniques).map((v, i) => {
-                    return (<li key={i} onClick={() => handler(v)}>{v}</li>)
-                })
-            }
-        </ul >
+        <div className="border-4 mx-7   border-gray-900">
+            <h3 className="text-3xl">Techniques:</h3>
+            <ul className=" mx-7 list-decimal  ">
+                {
+                    Object.keys(math.techniques).map((v, i) => {
+                        return (<li key={i} onClick={() => handler(math.techniques[v])}>{v}</li>)
+                    })
+                }
+            </ul >
+        </div>
     )
 }
 
 
 export default class ControlBox extends React.Component<BoxProp, BoxState> {
-    technique: any
+    technique: Function
     constructor(props: BoxProp) {
         super(props)
         this.state = {
             p: new PolygonMath(this.props.canvasRef),
             drawing: undefined
         }
+        this.technique = this.state.p.techniques.random
     }
 
 
@@ -45,26 +49,23 @@ export default class ControlBox extends React.Component<BoxProp, BoxState> {
             this.setState({
                 drawing: setInterval(() => {
                     let p = this.state.p
-                    p.drawChaosFrac(p.polygon(3, p.min, p.center.x, p.center.y), 1000, null, null)
+                    p.drawChaosFrac(p.polygon(3, p.min, p.center.x, p.center.y), 5000, this.technique, null)
                 }, 300)
             })
 
         }
     }
-    handleTech(t: any) {
+    handleTech(t: Function) {
         this.technique = t
 
     }
     clear = () => {
         this.state.p.clear()
-        console.log(this.technique);
-
     }
 
     render() {
         return (
             <div className="bg-purple-500">
-                A box with text
                 <button className="bg-green-700 border-4 border-red-500" onClick={this.handleClick}>{this.state.drawing ? "Pause" : "Start"}</button>
                 <button className="bg-green-700" onClick={this.clear}>Clear</button>
                 <Techniques math={this.state.p} handler={this.handleTech.bind(this)} />

@@ -5,6 +5,10 @@ type Point = {
 };
 type Polygon = Point[];
 
+export interface Techniques {
+    [string: string]: Function
+}
+
 export default class PolygonMath {
     canvas: HTMLCanvasElement
     ctx: CanvasRenderingContext2D
@@ -114,7 +118,13 @@ export default class PolygonMath {
         return out;
     };
 
-    techniques = {
+
+    techniques: Techniques = {
+
+        random: (prevRand: null, vertices: number) => {
+
+            return Math.floor(Math.random() * vertices);
+        },
 
         /**
          * Selects a random vertex that is not the same as the previously chosen vertex.
@@ -188,14 +198,9 @@ export default class PolygonMath {
     drawChaosFrac = (
         points: Polygon,
         iterations: number,
-        technique: Function | null,
+        technique: Function,
         r: number | null
     ): void => {
-        if (technique === null) {
-            technique = () => {
-                return Math.floor(Math.random() * points.length);
-            }
-        }
         if (r === null) {
             r = (points.length + 3) / points.length
         }
