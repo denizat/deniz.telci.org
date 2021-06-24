@@ -3,6 +3,7 @@ import { Link, Route, Switch, useParams, useRouteMatch } from "react-router-dom"
 import "tailwindcss/tailwind.css"
 
 import Polygon from "./fun/pages/Polygon"
+import Sort from "./fun/pages/Sort"
 
 type funParams = {
     funThing: string
@@ -18,7 +19,7 @@ const things: obj = {
         <Polygon />
     ),
     sort: () => (
-        <div>We are in SORT</div>
+        <Sort />
     )
 }
 
