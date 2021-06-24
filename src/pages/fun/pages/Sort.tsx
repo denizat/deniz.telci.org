@@ -62,16 +62,24 @@ class Test extends React.Component {
     ref: React.RefObject<HTMLDivElement>
     solve: Function
     box = document.createElement("div")
-    max = 10
+    max = 100
     arr: number[] = []
     constructor() {
         super(null)
         this.ref = React.createRef<HTMLDivElement>()
 
         for (let i = 0; i < this.max; i++) {
-            this.arr.push(Math.floor(Math.random() * this.max))
+            this.arr.push(i)
 
         }
+        this.arr.map((v, i, a) => {
+            let rand = Math.floor(Math.random() * this.max)
+            let tmp = a[rand]
+            a[rand] = v
+            a[i] = tmp
+
+        })
+
         this.box.className = "flex flex-row"
 
         this.arr.map(v => {
@@ -92,7 +100,7 @@ class Test extends React.Component {
     }
 
 
-    denizSort() {
+    async denizSort() {
         let count;
         let arr = this.arr
         while (count != arr.length) {
@@ -100,13 +108,14 @@ class Test extends React.Component {
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i] > arr[i + 1]) {
                     [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-                    // [this.box.childNodes[i], this.box.childNodes[i + 1]] = [this.box.childNodes[i + 1], this.box.childNodes[i]];
+
                     let small = this.box.childNodes.item(i)
                     let holdSmall = small.cloneNode()
                     let big = this.box.childNodes.item(i + 1)
                     let holdBig = big.cloneNode()
                     this.box.replaceChild(holdBig, small)
                     this.box.replaceChild(holdSmall, big)
+                    await sleep(0)
 
                 } else {
                     count += 1;
@@ -121,8 +130,6 @@ class Test extends React.Component {
         this.ref.current.appendChild(this.box)
         if (!this.didWeSort) {
             this.denizSort()
-            console.log(this.box.children);
-
             this.didWeSort = true
         }
     }
@@ -135,10 +142,10 @@ class Test extends React.Component {
 export default () => {
     return (
         <div>
-            <div className="flex flex-col" style={{ height: min }}>
+            {/* <div className="flex flex-col" style={{ height: min }}>
                 <Boxes />
 
-            </div>
+            </div> */}
             <div className="flex flex-col" style={{ height: min }}>
                 <Test />
 
