@@ -8,7 +8,7 @@ function sleep(ms: number) {
 }
 
 class Boxes extends React.Component<{}, { arr: number[] }> {
-    max: number = 100
+    max: number = 10
     constructor() {
         super(null)
         let arr = []
@@ -45,7 +45,7 @@ class Boxes extends React.Component<{}, { arr: number[] }> {
                 if (arr[i] > arr[i + 1]) {
                     [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
                     this.setState({ arr: arr })
-                    await sleep(0)
+                    await sleep(1)
                 } else {
                     count += 1;
                 }
@@ -57,9 +57,7 @@ class Boxes extends React.Component<{}, { arr: number[] }> {
     once: boolean
     componentDidMount() {
         if (!this.once) {
-            setTimeout(() => {
-                this.denizSort()
-            }, 1000);
+            this.denizSort()
             this.once = true
         }
     }
@@ -74,10 +72,34 @@ class Boxes extends React.Component<{}, { arr: number[] }> {
     }
 
 }
+
+class Test extends React.Component {
+    ref: React.RefObject<HTMLDivElement>
+    constructor() {
+        super(null)
+        this.ref = React.createRef<HTMLDivElement>()
+    }
+    componentDidMount() {
+        console.log(this.ref.current.innerHTML);
+
+    }
+
+    render() {
+        return <div ref={this.ref}>Here</div>
+    }
+}
+
 export default () => {
     return (
-        <div className="flex flex-col" style={{ height: min }}>INHERE
-            <Boxes />
+        <div>
+            <div className="flex flex-col" style={{ height: min }}>
+                <Boxes />
+
+            </div>
+            <div className="flex flex-col" style={{ height: min }}>
+                <Test />
+
+            </div>
         </div>
     )
 
