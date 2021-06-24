@@ -20,21 +20,6 @@ class Boxes extends React.Component<{}, { arr: number[] }> {
         }
     }
 
-    denizSortFast() {
-        let count;
-        let arr = this.state.arr
-        while (count != arr.length) {
-            count = 0;
-            for (let i = 0; i < arr.length; i++) {
-                if (arr[i] > arr[i + 1]) {
-                    [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-                } else {
-                    count += 1;
-                }
-            }
-        }
-        this.setState({ arr: arr })
-    }
 
     async denizSort() {
         let count;
@@ -75,13 +60,71 @@ class Boxes extends React.Component<{}, { arr: number[] }> {
 
 class Test extends React.Component {
     ref: React.RefObject<HTMLDivElement>
+    solve: Function
+    box = document.createElement("div")
+    max = 10
+    arr: number[] = []
     constructor() {
         super(null)
         this.ref = React.createRef<HTMLDivElement>()
-    }
-    componentDidMount() {
-        console.log(this.ref.current.innerHTML);
 
+        for (let i = 0; i < this.max; i++) {
+            this.arr.push(Math.floor(Math.random() * this.max))
+
+        }
+        this.box.className = "flex flex-row"
+
+        this.arr.map(v => {
+
+            let bar = document.createElement("div")
+            let size = min * (1 / this.max)
+            // bar.style.height = "300px"
+            bar.style.height = (v * size).toString() + "px"
+            bar.style.width = size.toString() + "px"
+            bar.id = v.toString()
+            // console.log(bar.style.height);
+
+            bar.className = "bg-gray-900"
+
+            this.box.appendChild(bar)
+        })
+
+    }
+
+
+    denizSort() {
+        let count;
+        let arr = this.arr
+        while (count != arr.length) {
+            count = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+                    // [this.box.childNodes[i], this.box.childNodes[i + 1]] = [this.box.childNodes[i + 1], this.box.childNodes[i]];
+                    let small = this.box.childNodes.item(i)
+                    let holdSmall = small.cloneNode()
+                    let big = this.box.childNodes.item(i + 1)
+                    let holdBig = big.cloneNode()
+                    this.box.replaceChild(holdBig, small)
+                    this.box.replaceChild(holdSmall, big)
+
+                } else {
+                    count += 1;
+                }
+
+            }
+        }
+    }
+
+    didWeSort: boolean = false
+    componentDidMount() {
+        this.ref.current.appendChild(this.box)
+        if (!this.didWeSort) {
+            this.denizSort()
+            console.log(this.box.children);
+
+            this.didWeSort = true
+        }
     }
 
     render() {
