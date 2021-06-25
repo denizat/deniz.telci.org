@@ -109,8 +109,13 @@ class Test extends React.Component {
                 if (arr[i] > arr[i + 1]) {
                     [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
 
+                    let out = this.box.children.item(i).outerHTML
+                    this.box.children.item(i).outerHTML = out.replace("bg-gray-900", "bg-red-700")
                     let small = this.box.childNodes.item(i)
                     let holdSmall = small.cloneNode()
+
+                    out = this.box.children.item(i + 1).outerHTML
+                    this.box.children.item(i + 1).outerHTML = out.replace("bg-gray-900", "bg-red-700")
                     let big = this.box.childNodes.item(i + 1)
                     let holdBig = big.cloneNode()
                     this.box.replaceChild(holdBig, small)
@@ -120,6 +125,8 @@ class Test extends React.Component {
                 } else {
                     count += 1;
                 }
+                let out = this.box.children.item(i).outerHTML
+                this.box.children.item(i).outerHTML = out.replace("bg-red-700", "bg-gray-900")
 
             }
         }
