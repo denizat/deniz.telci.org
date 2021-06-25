@@ -14,15 +14,15 @@ class WithReact extends React.Component<{}, { arr: number[], eleArr: { ele: JSX.
         let arr = []
         for (let i = 0; i < this.max; i++) {
             // arr.push(Math.floor(Math.random() * this.max))
-            arr.push(i)
+            arr.push(this.max - i)
         }
-        arr.map((v, i, a) => {
-            let rand = Math.floor(Math.random() * this.max)
-            let tmp = a[rand]
-            a[rand] = v
-            a[i] = tmp
+        // arr.map((v, i, a) => {
+        //     let rand = Math.floor(Math.random() * this.max)
+        //     let tmp = a[rand]
+        //     a[rand] = v
+        //     a[i] = tmp
 
-        })
+        // })
         let eleArr = arr.map((v) => {
             let size = min * (1 / this.max)
             return ({ ele: <div style={{ height: v * size, width: size }} className="bg-gray-900"></div>, val: v })
@@ -95,16 +95,16 @@ class ByHand extends React.Component {
         this.ref = React.createRef<HTMLDivElement>()
 
         for (let i = 0; i < this.max; i++) {
-            this.arr.push(i)
+            this.arr.push(this.max - i)
 
         }
-        this.arr.map((v, i, a) => {
-            let rand = Math.floor(Math.random() * this.max)
-            let tmp = a[rand]
-            a[rand] = v
-            a[i] = tmp
+        // this.arr.map((v, i, a) => {
+        //     let rand = Math.floor(Math.random() * this.max)
+        //     let tmp = a[rand]
+        //     a[rand] = v
+        //     a[i] = tmp
 
-        })
+        // })
 
         this.box.className = "flex flex-row"
 
