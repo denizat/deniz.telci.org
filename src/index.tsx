@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import "tailwindcss/tailwind.css"
-import "./image.css"
+// import "tailwindcss/tailwind.css"
+import "./index.css"
 import "./fonts/cms/cmun-serif.css"
 
 import Fun from "./pages/Fun"
@@ -11,36 +11,28 @@ import Art from "./pages/Art"
 class App extends React.Component {
   render() {
     return (
-      <div className="bg-still-water bg-cover  flex flex-col  overflow-auto   text-black font-cm  h-screen ">
-        <div className="text-6xl  p-10">Deniz Telci</div>
-
+      <div className=" flex flex-col items-center  font-cm overflow-auto h-screen bg-gray-950 text-white text-xl">
         <Router >
           <Switch>
             <Route exact path="/">
-              <div className="items-center text-3xl ">
-                <h1>Deniz Telci</h1>
-                <figure className="items-center">
-                  {/* <img  className="image self-center" src={transme} title="Made by some gimp error, I think." /> */}
-                  <figcaption>"Very handsome" - My Mom</figcaption>
-                </figure>
-                <h2>Contact</h2>
-                <ul>
-                  <li>
-                    Email: <a href="mailto:deniz@telci.org">deniz@telci.org</a>
-                  </li>
-                  <li>
-                    GitHub: <a href="https://github.com/denizat">denizat</a>
-                  </li>
-                </ul>
+              <div className="items-center">
+                <div className="text-6xl p-10">Deniz Telci</div>
+                <div className="flex flex-col">
+                  <h2 className="text-3xl self-center">Contact</h2>
+                  <ul>
+                    <li>
+                      Email: <a href="mailto:deniz@telci.org">deniz@telci.org</a>
+                    </li>
+                    <li>
+                      GitHub: <a href="https://github.com/denizat">denizat</a>
+                    </li>
+                  </ul>
+                </div>
                 <div className="container mx-auto m-4">
-                  <h2 className="text-4xl underline hover:bg-pink-700 w-max">Fun Stuff</h2>
-                  <ul className="list-disc">
-                    <li>
-                      <Link to="/fun" >Fun</Link>
-                    </li>
-                    <li>
-                      <Link to="/art" >Art</Link>
-                    </li>
+                  <h2 className="text-3xl">Fun Stuff:</h2>
+                  <ul className="ml-10 list-disc">
+                    <Link to="/fun" ><li>Fun</li></Link>
+                    <Link to="/art" ><li>Art</li></Link>
                   </ul>
                 </div>
               </div>

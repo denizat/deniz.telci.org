@@ -6,6 +6,11 @@ module.exports = {
       cm: ["Computer Modern Serif", "serif"],
     },
     extend: {
+      colors: {
+        gray: {
+          950: '#101010',
+        }
+      },
       backgroundImage: (theme) => ({
         "still-water": "url('/src/images/still-water.jpg')",
       }),

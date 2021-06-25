@@ -135,21 +135,14 @@ class Test extends React.Component {
     }
 
     render() {
-        return <div ref={this.ref}>Here</div>
+        return <div ref={this.ref}></div>
     }
 }
 
 export default () => {
     return (
-        <div>
-            {/* <div className="flex flex-col" style={{ height: min }}>
-                <Boxes />
-
-            </div> */}
-            <div className="flex flex-col" style={{ height: min }}>
-                <Test />
-
-            </div>
+        <div className="flex flex-col" style={{ height: min }}>
+            <Test />
         </div>
     )
 
