@@ -51,7 +51,7 @@ class WithReact extends React.Component<{}, { arr: number[], eleArr: { ele: JSX.
                     arr[i + 1] ? arr[i + 1].ele = <div style={{ height: arr[i + 1].val * size, width: size }} className="bg-red-700"></div> : null
 
                     this.setState({ eleArr: arr })
-                    await sleep(1)
+                    await sleep(0)
                 } else {
                     count += 1;
                 }
@@ -146,7 +146,7 @@ class ByHand extends React.Component {
                     let holdBig = big.cloneNode()
                     this.box.replaceChild(holdBig, small)
                     this.box.replaceChild(holdSmall, big)
-                    await sleep(10)
+                    await sleep(0)
 
                 } else {
                     count += 1;
