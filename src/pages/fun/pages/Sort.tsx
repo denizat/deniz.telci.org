@@ -1,40 +1,63 @@
 import React from "react"
 import "tailwindcss/tailwind.css"
 
-let min = (screen.width > screen.height ? screen.height : screen.width) * .8
+let min = (screen.width > screen.height ? screen.height : screen.width) * .5
 
 function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-class Boxes extends React.Component<{}, { arr: number[] }> {
-    max: number = 10
-    constructor() {
-        super(null)
+class WithReact extends React.Component<{}, { arr: number[], eleArr: { ele: JSX.Element, val: number }[] }> {
+    max: number = 100
+    constructor(props: null = null) {
+        super(props)
         let arr = []
         for (let i = 0; i < this.max; i++) {
-            arr.push(Math.floor(Math.random() * this.max))
+            // arr.push(Math.floor(Math.random() * this.max))
+            arr.push(i)
         }
+        arr.map((v, i, a) => {
+            let rand = Math.floor(Math.random() * this.max)
+            let tmp = a[rand]
+            a[rand] = v
+            a[i] = tmp
+
+        })
+        let eleArr = arr.map((v) => {
+            let size = min * (1 / this.max)
+            return ({ ele: <div style={{ height: v * size, width: size }} className="bg-gray-900"></div>, val: v })
+        }
+        )
         this.state = {
-            arr: arr
+            arr: arr,
+            eleArr: eleArr
         }
     }
 
 
     async denizSort() {
         let count;
-        let arr = this.state.arr
+        // let arr = this.state.eleArr.map((v) => v)
+        let arr = this.state.eleArr
+        console.log('here');
+
         while (count != arr.length) {
             count = 0;
             for (let i = 0; i < arr.length; i++) {
-                if (arr[i] > arr[i + 1]) {
+                let size = min * (1 / this.max)
+                if (arr[i].val > arr[i + 1]?.val) {
                     [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-                    this.setState({ arr: arr })
+                    arr[i].ele = <div style={{ height: arr[i].val * size, width: size }} className="bg-red-700"></div>
+                    arr[i + 1] ? arr[i + 1].ele = <div style={{ height: arr[i + 1].val * size, width: size }} className="bg-red-700"></div> : null
+
+                    this.setState({ eleArr: arr })
                     await sleep(1)
                 } else {
                     count += 1;
                 }
 
+                arr[i].ele = <div style={{ height: arr[i].val * size, width: size }} className="bg-gray-900"></div>
+                arr[i + 1] ? arr[i + 1].ele = <div style={{ height: arr[i + 1].val * size, width: size }} className="bg-gray-900"></div> : null
             }
         }
     }
@@ -49,23 +72,26 @@ class Boxes extends React.Component<{}, { arr: number[] }> {
 
     render() {
         return <div className="flex flex-row">{
-            this.state.arr.map(v => {
-                let size = min * (1 / this.max)
-                return (<div style={{ height: v * size, width: size }} className="bg-gray-900"></div>)
+            this.state.eleArr.map(v => {
+                return v.ele
             })
+            // this.state.arr.map(v => {
+            //     let size = min * (1 / this.max)
+            //     return (<div style={{ height: v * size, width: size }} className="bg-gray-900"></div>)
+            // })
         }</div>
     }
 
 }
 
-class Test extends React.Component {
+class ByHand extends React.Component {
     ref: React.RefObject<HTMLDivElement>
     solve: Function
     box = document.createElement("div")
     max = 100
     arr: number[] = []
-    constructor() {
-        super(null)
+    constructor(props: null = null) {
+        super(props)
         this.ref = React.createRef<HTMLDivElement>()
 
         for (let i = 0; i < this.max; i++) {
@@ -120,7 +146,7 @@ class Test extends React.Component {
                     let holdBig = big.cloneNode()
                     this.box.replaceChild(holdBig, small)
                     this.box.replaceChild(holdSmall, big)
-                    await sleep(0)
+                    await sleep(10)
 
                 } else {
                     count += 1;
@@ -142,14 +168,15 @@ class Test extends React.Component {
     }
 
     render() {
-        return <div ref={this.ref}></div>
+        return <div ref={this.ref} style={{ transform: "scaleY(-1)" }}></div>
     }
 }
 
 export default () => {
     return (
         <div className="flex flex-col" style={{ height: min }}>
-            <Test />
+            <ByHand />
+            <WithReact />
         </div>
     )
 
