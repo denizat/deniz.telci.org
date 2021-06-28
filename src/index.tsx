@@ -54,6 +54,18 @@ class App extends React.Component<{}, { imageClicked: Boolean }> {
               <Route path="/fun">
                 <Fun />
               </Route>
+              {/* <Route path="/interests">
+                <Interests />
+              </Route> */}
+              {/* <Route path="/education">
+                <Education />
+              </Route> */}
+              {/* <Route path="/skills">
+                <Skills />
+              </Route> */}
+              {/* <Route path="/resume">
+                <Resume />
+              </Route> */}
               <Route path="/experience">
                 <Experience />
               </Route>
