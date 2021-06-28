@@ -12,7 +12,7 @@ module.exports = {
         }
       },
       backgroundImage: (theme) => ({
-        "still-water": "url('/src/images/still-water.jpg')",
+        "ocean": "url('/public/images/ocean.jpg')",
       }),
     },
   },
