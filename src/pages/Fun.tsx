@@ -4,6 +4,7 @@ import "tailwindcss/tailwind.css"
 
 import Polygon from "./fun/pages/Polygon"
 import Sort from "./fun/pages/Sort"
+import { LifeDOM } from "./fun/pages/Life"
 
 
 interface obj {
@@ -15,6 +16,9 @@ const things: obj = {
     ),
     sort: () => (
         <Sort />
+    ),
+    life: () => (
+        <LifeDOM />
     )
 }
 type funParams = {

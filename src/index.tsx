@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import "tailwindcss/tailwind.css"
+// https://tailwindcss.com/docs/hover-focus-and-other-states crazy
 import "./index.css"
 import "./fonts/cms/cmun-serif.css"
 import Img from "./images/pic.png"
@@ -43,11 +44,11 @@ class App extends React.Component<{}, { imageClicked: Boolean }> {
                     </ul>
                   </div>
                   <div className="flex flex-col mx-auto m-4">
-                    <Modal><button className="bg-blue-800 rounded-lg px-2 py-1">Login</button></Modal>
+                    {/* <Modal><button className="bg-blue-800 rounded-lg px-2 py-1">Login</button></Modal> */}
                     <div className="cursor-pointer underline hover:text-blue-700" onClick={() => this.setState({ imageClicked: !this.state.imageClicked })}>{this.state.imageClicked ? <img src={Img}></img> : "Image of Me"}</div>
-                    <Link to="/fun" >Fun</Link>
-                    <Link to="/experience" >Experience</Link>
-                    <Link to="/projects" >Projects</Link>
+                    <Link to="/fun" className="underline" >Fun</Link>
+                    {/* <Link to="/experience" >Experience</Link>
+                    <Link to="/projects" >Projects</Link> */}
                   </div>
                 </div>
               </Route>
@@ -66,12 +67,12 @@ class App extends React.Component<{}, { imageClicked: Boolean }> {
               {/* <Route path="/resume">
                 <Resume />
               </Route> */}
-              <Route path="/experience">
+              {/* <Route path="/experience">
                 <Experience />
               </Route>
               <Route path="/projects">
                 <Projects />
-              </Route>
+              </Route> */}
             </Switch>
           </Router>
         </div>
